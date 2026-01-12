@@ -83,7 +83,7 @@ impl Tensor{
     }
 }
 fn main() {
-    println!("tensor zero, el proyecto de operaciones tensoriales!");
+    println!("tensor zero, the tensor operations project!");
 
     let data=vec![1.0, 2.0, 3.0, 4.0];
     let shape=vec![2,2]; 
