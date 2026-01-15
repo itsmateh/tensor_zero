@@ -13,11 +13,17 @@ fn main(){
     let tensor_5 = (&tensor_1*&tensor_2).unwrap(); 
 
     
-    println!(" A: {:?} \n + \n B: {:?} \n ------------------------ \n C: {:?}", tensor_1.data(), tensor_2.data(), tensor_3.data());
-    println!("####################################");
-    println!(" A: {:?} \n - \n B: {:?} \n ------------------------ \n C: {:?}", tensor_1.data(), tensor_2.data(), tensor_4.data());
-    println!("####################################");
-    println!(" A: {:?} \n * \n B: {:?} \n ------------------------ \n C: {:?}", tensor_1.data(), tensor_2.data(), tensor_5.data());
+    // println!(" A: {:?} \n + \n B: {:?} \n ------------------------ \n C: {:?}", tensor_1.data(), tensor_2.data(), tensor_3.data());
+    // println!("####################################");
+    // println!(" A: {:?} \n - \n B: {:?} \n ------------------------ \n C: {:?}", tensor_1.data(), tensor_2.data(), tensor_4.data());
+    // println!("####################################");
+    // println!(" A: {:?} \n * \n B: {:?} \n ------------------------ \n C: {:?}", tensor_1.data(), tensor_2.data(), tensor_5.data());
 
+    let a = Tensor::new(&vec![2.0, 4.0, 1.0, 0.0], &vec![2, 2]).unwrap();
+    let b = Tensor::new(&vec![1.0, 3.0, 5.0, 2.0, 4.0, 6.0], &vec![2, 3]).unwrap();
+    let c = a.matmul(&b).unwrap();
+    println!("MatMul: {:?}", c.data()); 
+    // expected answer [10.0, 22.0, 34.0, 1.0, 3.0, 5.0]
 
 }
+

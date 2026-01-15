@@ -94,6 +94,38 @@ impl Tensor {
         Ok(Tensor { data: new_tensor_data, shape: self.shape.clone() })
 
     }
+
+    pub fn mul_scalar(&self, scalar:f32) -> Tensor {
+        let new_tensor_data:Vec<f32> = self.data.iter()
+            .map(|a| a*scalar)
+            .collect();
+        Tensor{ data:new_tensor_data, shape:self.shape.clone() }
+    }
+
+    pub fn matmul(&self, other_tensor:&Tensor) -> Result<Tensor, Error> {
+        if (self.shape[1] != other_tensor.shape[0]) || (self.shape.len() != 2 || other_tensor.shape.len() != 2) {
+            return Err(Error::ShapeMismatchError);
+        }
+        let n = self.shape[0]; // A rows
+        let m = other_tensor.shape[1]; // B columns
+        let k = self.shape[1]; // or other_tensor.shape[0], the commom dim (A_cols / B_rows)
+
+        let mut new_tensor_data:Vec<f32> = vec![0.0;n*m];
+        // ans[a_rows][b_cols] -> sum(A[a_rows][common_dim], B[common_dim][b_cols])
+        // row major index = row * total_cols + col
+        for i in 0..n{
+            for j in 0..m{
+                let mut sum=0.0;
+                for c in 0..k{
+                    let a=self.data[(i*k)+c]; 
+                    let b=other_tensor.data[j+(m*c)];
+                    sum+=a*b; 
+                }
+                new_tensor_data[(i*m)+j]=sum;
+            }
+        }
+        Ok(Tensor { data:new_tensor_data, shape:vec![n,m]})
+    }
 }
 
 // ----------------------------------------------------------------------------------
