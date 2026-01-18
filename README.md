@@ -68,16 +68,15 @@ All operations include integration tests covering both valid operations and erro
 ## 🚀 Roadmap
 
 **Next Steps:**
-- [ ] Matrix transpose
-- [ ] Optimize matmul with transpose
-- [ ] Parallel operations with Rayon
+- [X] Matrix transpose
+- [X] Optimize matmul with transpose
+- [X] Parallel operations with Rayon
 
 **Future Goals:**
 - [ ] Broadcasting support
 - [ ] N-dimensional operations
 - [ ] Reshape and view operations
 - [ ] Advanced linear algebra (inverse, determinant, SVD)
-- [ ] Automatic differentiation
 
 ## 🔧 Technical Details
 
